@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    
+    <style>
+         /*
+     
+      
+    <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+    <li><a href="#!">Second Link</a></li>
+    <li><div class="divider"></div></li>*/
+    </style>
+</head>
+<body>
+     
+<nav> <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a><a href="index.html" ><h4 >main</h4> </a></nav>
+    <ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+      <div class="background">
+        
+      </div>
+    <br><a href="find.html"><i class="material-icons l" >done</i>Find</a>
+        <br><a href="lost.html"><i class="material-icons l">search</i>Lost</a>
+       <br> <a href="post.html"><i class="material-icons l">add</i> New post</a>
+    </div></li>
+    
+    </ul>
+    
+ 
+     
+     
+     
+     
+     
+     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+     
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    
+    <script>
+        $(document).ready(function(){
+    $('.sidenav').sidenav();
+  });
+       
+            $.ajax({
+                url:"http://127.0.0.1:8000/lost",
+                success:function(arg){
+                     console.log(arg);
+                    for (var i=0;i<arg.length;i++){
+                        var r=document.createElement('div');
+                        r.classList.add('row');
+                        document.body.appendChild(r);
+                            
+                        var c=document.createElement('div');
+                        c.classList.add('col','s12');
+                        r.appendChild(c);
+                        
+                        var card=document.createElement('div');
+                        card.classList.add('card','blue-grey','darken-1');
+                        c.appendChild(card);
+                        
+                        var cardcon=document.createElement('div');
+                        cardcon.classList.add('card-content','white-text');
+                        card.appendChild(cardcon);
+                        
+                        var span=document.createElement('span');
+                        span.classList.add('card-title');
+                        cardcon.appendChild(span);
+                        span.innerHTML=arg[i].title;
+                        
+                        var p=document.createElement('p');
+                        
+                        cardcon.appendChild(p);
+                        p.innerHTML=arg[i].description;
+                        
+                        
+                        var ca=document.createElement('div');
+                        
+                        ca.classList.add('card-action');
+                        card.appendChild(ca);
+                        
+                        var con=document.createElement('p');
+                        ca.appendChild(con);
+                        ca.classList.add('white-text');
+                        con.innerHTML=arg[i].contact;
+                    };
+                },
+                data:{
+                    
+                }
+            });
+        
+        
+        
+   
+    </script>
+</body>
+</html>
